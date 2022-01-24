@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="IE=edge"
+    >
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>旅遊警示網頁</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+    ></script>
+
+    <!-- Local CSS & JS -->
+    <link
+        rel="stylesheet"
+        href="index.css"
+    >
+    <link
+        rel="stylesheet"
+        href="twicon/twicon.css"
+    >
+    <link
+        rel="shortcut icon"
+        href="./taiwanIcon.png"
+    >
+    <link
+        rel="bookmark"
+        href="./taiwanIcon.png"
+    >
+    <!-- Font Awesome JS -->
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        defer
+        src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"
+    ></script>
+</head>
+<style>
+    .tag {
+        padding: 3px;
+        border-radius: 3rem;
+        background: #334257;
+        transition: .3s;
+        cursor: pointer;
+    }
+
+    .tag a {
+        text-decoration: none;
+        transition: .3s;
+        color: #F7F6F2;
+    }
+
+    .tag.activate {
+        background: #ECB365;
+    }
+
+    .tag.activate a {
+        color: #334257;
+    }
+
+    .tag:hover {
+        background: #ECB365;
+    }
+
+    .tag:hover a {
+        color: #334257;
+    }
+
+    .tag_info {
+        width: auto;
+        height: auto;
+    }
+</style>
+
+<body>
+    <script>
+        $(function () {
+            var $li = $('.fav p');
+            $($li.addClass('active').find('a').attr('href')).siblings('.tag-inner').hide();
+
+            // 先固定讓第一個選項是 activate (黑色區塊)
+            var $li2 = $('.fav p .tag:nth-child(1)');
+            $li2.addClass('activate');
+
+            $li.click(function () {
+                $($(this).find('a').attr('href')).show().siblings('.tag-inner').hide();
+                $(this).addClass('active').siblings('.active').removeClass('active');
+                $li.removeClass('activate');
+                $(this).addClass('activate');
+            });
+        });
+    </script>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+            <i class="twicon-balloon"></i>
+            <a
+                class="navbar-brand"
+                href="Home.html"
+            >旅遊警示平台</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+                class="collapse navbar-collapse"
+                id="navbarSupportedContent"
+            >
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="
+                    nav-item">
+                        <a
+                            class="nav-link"
+                            href="Search.html"
+                        ><i class="twicon-red-man"></i> 查詢各國旅遊警示分級</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a
+                            class="nav-link"
+                            href="Saves.html"
+                        ><i class="twicon-taipei101"></i> 我的旅遊警示收藏</a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="User_Info.html"
+                        ><i class="twicon-l-pixnet"></i> 修改使用者資料</a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            href="./User_Login.html"
+                        ><i class="twicon-green-man"></i> 登出</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container fav mb-3">
+            <div class="row">
+                <div class="col-3">
+                    <h5 class="p-2">已收藏國家</h5>
+                    <p class="tag px-3 mx-1 mr-5"><a href="#c1">America</a></p>
+                    <p class="tag px-3 mx-1 mr-5"><a href="#c2">Taiwan</a></p>
+                    <p class="tag px-3 mx-1 mr-5"><a href="#c3">UK</a></p>
+                </div>
+                <div class="col-9">
+                    <h5 class="p-2">查看收藏資訊</h5>
+                    <p class="tag_info">
+                    <div
+                        id="c1"
+                        class="tag-inner"
+                    >
+                        <div class="el">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <h3>America</h3>
+                                    <h6>第二級 (注意)</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row py-2">
+                                <div class="col">有效日期</div>
+                                <div class="col text-right">2021/12/02~2022/03/02</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">疾病</div>
+                                <div class="col text-right">嚴重特殊傳染性肺炎</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">犯罪率</div>
+                                <div class="col text-right">未登入</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">建議措施</div>
+                                <div class="col text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+                                    asperiores
+                                    non
+                                    facere
+                                    expedita
+                                    officiis quia perspiciatis molestias? Provident ipsum libero, ipsam necessitatibus
+                                    excepturi,
+                                    eveniet
+                                    similique vel, beatae assumenda cum placeat!
+                                    Lorit similique animi eius aspernatur in.</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">備忘錄</div>
+                                <div class="col text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Molestiae quae laboriosam animi non accusamus exercitationem placeat eaque error
+                                    amet aliquid quaerat ratione, fugiat aspernatur corporis iusto blanditiis odit
+                                    repudiandae iure.</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col text-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning"
+                                    >取消收藏</button>
+                                </div>
+                                <div class="col text-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-info"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal"
+                                    >
+                                        修改備忘
+                                    </button>
+                                    <div
+                                        class="modal fade"
+                                        id="exampleModal"
+                                        tabindex="0"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="modal-dialog"
+                                            role="document"
+                                        >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5
+                                                        class="modal-title"
+                                                        id="exampleModalLabel"
+                                                    >收藏內容</h5>
+                                                    <button
+                                                        type="button"
+                                                        class="close"
+                                                        data-dismiss="modal"
+                                                        aria-label="Close"
+                                                    >
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <textarea
+                                                                class="form-control"
+                                                                id="message-text"
+                                                            ></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        data-dismiss="modal"
+                                                    >Close</button>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-primary"
+                                                    >Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        id="c2"
+                        class="tag-inner"
+                    >
+                        <div class="el">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <h3>Taiwan</h3>
+                                    <h6>第一級 (安全)</h6>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row py-2">
+                                <div class="col">有效日期</div>
+                                <div class="col text-right">2021/12/01~2022/03/28</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">疾病</div>
+                                <div class="col text-right">無</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">犯罪率</div>
+                                <div class="col text-right">未登入</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">建議措施</div>
+                                <div class="col text-right">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+                                    asperiores
+                                    non
+                                    facere
+                                    expedita
+                                    officiis.</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col">備忘錄</div>
+                                <div class="col text-right">台灣真讚</div>
+                            </div>
+                            <div class="row py-2">
+                                <div class="col text-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning"
+                                    >取消收藏</button>
+                                </div>
+                                <div class="col text-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-info"
+                                        data-toggle="modal"
+                                        data-target="#exampleModal"
+                                    >
+                                        修改備忘
+                                    </button>
+                                    <div
+                                        class="modal fade"
+                                        id="exampleModal"
+                                        tabindex="0"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true"
+                                    >
+                                        <div
+                                            class="modal-dialog"
+                                            role="document"
+                                        >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5
+                                                        class="modal-title"
+                                                        id="exampleModalLabel"
+                                                    >收藏內容</h5>
+                                                    <button
+                                                        type="button"
+                                                        class="close"
+                                                        data-dismiss="modal"
+                                                        aria-label="Close"
+                                                    >
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <textarea
+                                                                class="form-control"
+                                                                id="message-text"
+                                                            ></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-secondary"
+                                                        data-dismiss="modal"
+                                                    >Close</button>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-primary"
+                                                    >Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

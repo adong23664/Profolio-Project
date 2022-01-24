@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <title>My New Pen!</title>
+
+</head>
+<style>
+    body {
+        background: #f5f5f5;
+        color: black;
+        margin: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+<body>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.rawgit.com/jasondavies/d3-cloud/v1.2.1/build/d3.layout.cloud.js"></script>
+    <script>
+        console.log("JavaScript is amazing!!");
+
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .call(d3.zoom().on("zoom", function () {
+                svg.attr("transform", d3.event.transform)
+            }))
+            .append("g")
+
+        svg.append("circle")
+            .attr("cx", document.body.clientWidth / 2)
+            .attr("cy", document.body.clientHeight / 2)
+            .attr("r", 50)
+            .style("fill", "#B8DEE6")
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/earlyaccess/cwtexming.css);
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: "Cambria", "Noto Sans TC", 'cwTeXMing', sans-serif;
+    font-weight: 300;
+}
+
+.navbar i.twicon-balloon {
+    color: white;
+    font-size: 3rem;
+}
+
+svg {
+    width: 90vw;
+    height: 90vh;
+}
+
+path {
+    fill: #555;
+    cursor: pointer;
+}
+
+path:hover {
+    fill: deepskyblue;
+}
